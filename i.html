@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Navigation Example</title>
+  <style>
+    /* CSS for the left panel */
+    .left-panel {
+      width: 200px;
+      height: 100%;
+      background-color: #f1f1f1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+    }
+
+    /* Styling for the navigation links */
+    .left-panel a {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Styling for the active navigation link */
+    .left-panel a.active {
+      color: #007bff;
+    }
+
+    /* CSS for the content area */
+    .content {
+      margin-left: 240px; /* width of the left panel + some margin */
+      padding: 20px;
+    }
+
+    /* Styling for the content sections */
+    .content div {
+      display: none;
+    }
+
+    /* Styling for the visible content section */
+    .content div.show {
+      display: block;
+    }
+
+    /* Additional styles for the content sections */
+    h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="left-panel">
+    <!-- Navigation Links -->
+    <a href="#" onclick="showContent('home')">Home</a>
+    <a href="#" onclick="showContent('contact')">Contact</a>
+    <a href="#" onclick="showContent('information')">Information</a>
+    <a href="#" onclick="showContent('guide')">Guide</a>
+  </div>
+
+  <div class="content">
+    <div id="home" class="show">
+      <!-- Home Content -->
+      <h2>Welcome to the Home Page</h2>
+      <p>This is the content for the Home page.</p>
+    </div>
+
+    <div id="contact">
+      <!-- Contact Content -->
+      <h2>Contact Information</h2>
+      <p>Here is the contact information.</p>
+    </div>
+
+    <div id="information">
+      <!-- Information Content -->
+      <h2>Information Page</h2>
+      <p>This is the content for the Information page.</p>
+    </div>
+
+    <div id="guide">
+      <!-- Guide Content -->
+      <h2>Guide Page</h2>
+      <p>This is the content for the Guide page.</p>
+    </div>
+  </div>
+
+  <script>
+    function showContent(contentId) {
+      // Remove active class from all navigation links
+      var navigationLinks = document.querySelectorAll('.left-panel a');
+      for (var i = 0; i < navigationLinks.length; i++) {
+        navigationLinks[i].classList.remove('active');
+      }
+
+      // Add active class to the clicked navigation link
+      document.querySelector(`[onclick="showContent('${contentId}')"]`).classList.add('active');
+
+      // Hide all content sections
+      var contentDivs = document.getElementsByClassName('content')[0].children;
+      for (var i = 0; i < contentDivs.length; i++) {
+        contentDivs[i].classList.remove('show');
+      }
+
+      // Show the selected content section
+      document.getElementById(contentId).classList.add('show');
+    }
+  </script>
+</body>
+</html>
